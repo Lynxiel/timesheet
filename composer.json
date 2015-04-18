@@ -18,7 +18,8 @@
         "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "yiisoft/yii2-jui": "2.0.3"
+        "yiisoft/yii2-jui": "2.0.3",
+        "kartik-v/yii2-widget-timepicker": "1.0.0.x-dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

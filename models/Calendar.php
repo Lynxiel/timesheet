@@ -69,18 +69,13 @@ class Calendar extends \yii\db\ActiveRecord
     }
 
 
-    public function getMonthInterval($nMonthID, $nYearID)
+    public static function getMonthInterval($nMonthID, $nYearID)
     {
-        $query = new Query;
-        $query	->select(['tbl_user.username AS name', 'tbl_category.type as Category'])
-            ->from('tbl_user')
-            ->leftJoin('tbl_category', 'tbl_category.createdby = tbl_user.userid')
-            ->limit(2);
-
-        $command = $query->createCommand();
-        $data = $command->queryAll();
-        $model = $this->find()
-            ->where("m > '". $nMonthID ."' and y='".$nYearID."'")
+        return (new \yii\db\Query())
+            ->select([ 'dt', 'dayname'])
+            ->from('calendar')
+            ->where(['m' => $nMonthID, 'y'=>$nYearID])
+            ->orderBy(['dt'=>SORT_ASC])
             ->all();
     }
 }

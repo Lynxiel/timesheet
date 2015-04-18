@@ -6,9 +6,9 @@ $this->title = 'My Yii Application';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h2>Электрика</h2>
+        <br>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
         <?php
         // Редирект в зависимости от того, кто зашел - директор или простой работник
         if (Yii::$app->user->identity->username=='admin')

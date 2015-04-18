@@ -57,4 +57,13 @@ class Workers extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Timesheet::className(), ['worker_id' => 'id']);
     }
+
+    public static function getAllWorkers()
+    {
+        return (new \yii\db\Query())
+            ->select([ 'surname', 'name', 'id','tariff'])
+            ->from('workers')
+            ->orderBy(['surname'=>SORT_ASC])
+            ->all();
+    }
 }

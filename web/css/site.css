@@ -92,5 +92,49 @@ a.desc:after {
 /*------------------------------------ CUSTOM CSS----------------------------------------------*/
 /*------------------------------------ TIMESHEET------------------------------------*/
 .director-timesheet{
-    width: 100%;
+    /*width: 100%;*/
 }
+.director-timesheet .form-control{
+    font-size: 12px;
+    height: 40px;
+    padding: 15px 0 0 0;
+    text-align: center;
+}
+
+.director-timesheet .input-group-addon {
+     padding: 0;
+     font-size: 14px;
+     font-weight: normal;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: transparent;
+    border: 0;
+     border-radius: 0;
+    vertical-align: top;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    z-index: 30;
+
+}
+.ui-datepicker{
+    z-index: 50!important;
+}
+.timepicker{
+    background-color: transparent;
+}
+.holiday{
+    background-color: #f2dede;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: transparent;
+    opacity: 1;
+}
+.disabled-addon {display:none;}
+/*@media (min-width: 992px) {*/
+    /*.container {*/
+        /*width: 100%;*/
+    /*}*/
+/*}*/
