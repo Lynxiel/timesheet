@@ -11,26 +11,29 @@ class TimesheetController extends \yii\web\Controller
         $curMonth = date("n");
         $curYear = date("Y");
         $timesheets = (new \yii\db\Query())
-            ->select(['name', 'surname', 'patronymic','ts_date', 'hours'])
-            ->from('timesheet')
-            ->join('INNER JOIN', 'workers', 'workers.id = timesheet.worker_id')
-            ->join('INNER JOIN', 'calendar', 'dt = timesheet.ts_date')
+            ->select(['name', 'surname', 'patronymic','dt', 'hours', 'worker_id'])
+            ->from('workers')
+            ->join('LEFT OUTER JOIN', 'timesheet', 'workers.id = timesheet.worker_id')
+            ->join('LEFT OUTER JOIN', 'calendar', 'dt = timesheet.ts_date')
             ->where(['m' => $curMonth, 'y'=>$curYear])
-            ->orderBy(['workers.id' => SORT_DESC])
+            ->orderBy(['workers.id' => SORT_DESC, 'dt'=>SORT_ASC])
             ->all();
 
         $dates = (new \yii\db\Query())
-            ->select([ 'dt'])
+            ->select([ 'dt', 'dayname'])
             ->from('calendar')
             ->where(['m' => $curMonth, 'y'=>$curYear])
             ->orderBy(['dt'=>SORT_ASC])
             ->all();
 
 
+        $model = new Timesheet();
 
         return $this->render('director', [
+            'mPicker' => date('Y-m-d'),
             'dates' => $dates,
             'timesheets'=>$timesheets,
+            'model'=>$model
         ]);
     }
 
