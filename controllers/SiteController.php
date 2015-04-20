@@ -47,15 +47,15 @@ class SiteController extends Controller
         ];
     }
 
+//    public function actionIndex()
+//    {
+//        return $this->render('index');
+//    }
+
     public function actionIndex()
     {
-        return $this->render('index');
-    }
-
-    public function actionLogin()
-    {
         if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->render('index');
         }
 
         $model = new LoginForm();
@@ -67,6 +67,15 @@ class SiteController extends Controller
             ]);
         }
     }
+
+    public  function actionRedirect(){
+        // Редирект в зависимости от того, кто зашел - директор или простой работник
+        if (Yii::$app->user->identity->username=='admin')
+            $this->redirect(array('/timesheet/director/'));
+        else {
+            $this->redirect(array('/timesheet/workers/'));
+        }
+}
 
     public function actionLogout()
     {
